@@ -1,0 +1,22 @@
+{
+  "name": "globby-extra",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyy7259/globby-extra.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zyy7259/globby-extra/issues"
+  },
+  "homepage": "https://github.com/zyy7259/globby-extra#readme",
+  "dependencies": {
+    "globby": "^6.0.0"
+  }
+}
