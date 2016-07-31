@@ -19,7 +19,10 @@ const extra = function (pattern = ['*'], context) {
       return prefix + path.join(context, item.slice(index))
     })
   }
-  return globby(pattern)
+  return globby(pattern).then(paths => {
+    paths.context = context
+    return paths
+  })
 }
 
 module.exports = extra
