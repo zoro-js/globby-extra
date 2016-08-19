@@ -1,7 +1,22 @@
-var path = require('path')
+const path = require('path')
 const globby = require('globby')
 
-const extra = function (pattern = ['*'], context) {
+const extra = function (pattern, context, options) {
+  const {pattern: p, context: c} = format(pattern, context)
+  return globby(p, options).then(paths => {
+    paths.context = c
+    return paths
+  })
+}
+
+extra.sync = function (pattern, context, options) {
+  const {pattern: p, context: c} = format(pattern, context)
+  const paths = globby.sync(p, options)
+  paths.context = c
+  return paths
+}
+
+function format (pattern = ['*'], context) {
   // parse params
   if (!Array.isArray(pattern)) {
     pattern = [pattern]
@@ -19,10 +34,10 @@ const extra = function (pattern = ['*'], context) {
       return prefix + path.join(context, item.slice(index))
     })
   }
-  return globby(pattern).then(paths => {
-    paths.context = context
-    return paths
-  })
+  return {
+    pattern,
+    context
+  }
 }
 
 module.exports = extra
